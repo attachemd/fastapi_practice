@@ -53,6 +53,6 @@ def update_user(db: Session, user_id: int, request: UserBase):
 
 def delete_user(db: Session, user_id: int):
     user = db.query(DbUser).filter(DbUser.id == user_id)
-    user.delete(user)
+    user.delete()
     db.commit()
     return 'Ok'

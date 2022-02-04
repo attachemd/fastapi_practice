@@ -21,3 +21,7 @@ def get_article(db: Session, article_id: int):
     article = db.query(DbArticle).filter(DbArticle.id == article_id).first()
     # Handle errors
     return article
+
+
+def get_all_articles(db: Session):
+    return db.query(DbArticle).all()

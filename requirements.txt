@@ -5,3 +5,7 @@ pydantic
 passlib
 bcrypt
 Faker
+starlette
+black
+pylint
+python-multipart

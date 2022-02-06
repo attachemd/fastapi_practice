@@ -10,7 +10,7 @@ def create_user(db: Session, request: UserBase):
     new_user = DbUser(
         username=request.username,
         email=request.email,
-        password=Hash.bcrypt(request.password)
+        password=Hash.bcrypt(request.password),
     )
     db.add(new_user)
     db.commit()
@@ -28,15 +28,17 @@ def get_user(db: Session, user_id: int):
 
 def update_user(db: Session, user_id: int, request: UserBase):
     user = db.query(DbUser).filter(DbUser.id == user_id)
-    user.update({
-        DbUser.username: request.username,
-        DbUser.email: request.email,
-        DbUser.password: Hash.bcrypt(request.password)
-    })
+    user.update(
+        {
+            DbUser.username: request.username,
+            DbUser.email: request.email,
+            DbUser.password: Hash.bcrypt(request.password),
+        }
+    )
     db.commit()
     # db.refresh(user)
     # return user
-    return 'Ok'
+    return "Ok"
 
 
 # def update_user(db: Session, user_id: int, request: UserBase):
@@ -51,8 +53,9 @@ def update_user(db: Session, user_id: int, request: UserBase):
 #     db.refresh(db_user)
 #     return db_user
 
+
 def delete_user(db: Session, user_id: int):
     user = db.query(DbUser).filter(DbUser.id == user_id)
     user.delete()
     db.commit()
-    return 'Ok'
+    return "Ok"
